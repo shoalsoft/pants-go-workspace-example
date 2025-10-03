@@ -4,3 +4,9 @@ backend_packages.add = [
   "pants.backend.experimental.adhoc",
   "pants.backend.shell",
 ]
+build_file_prelude_globs = [
+  "pants-macros/*.py",
+]
+
+[environments-preview.names]
+workspace = "//:workspace"
