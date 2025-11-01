@@ -22,9 +22,9 @@ def shoalsoft_go_binary(
     # Build the binary and copy the output to the "chroot" for capture.
     target_type(
         name="bin",
-        command=f"source {{chroot}}/go.env && go build -o './{dist_bin_name}' && cp './{dist_bin_name}' '{{chroot}}/{dist_bin_name}'",
+        command=f"source {{chroot}}/go.env && $GOROOT/bin/go build -o './{dist_bin_name}' && cp './{dist_bin_name}' '{{chroot}}/{dist_bin_name}'",
         execution_dependencies=[
-            "//:find_goroot",
+            "//pants-macros:find_goroot",
         ],
         output_files=[dist_bin_name],
         workdir=".",
@@ -55,9 +55,9 @@ def shoalsoft_go_tests(
 ) -> None:
     test_shell_command(
         name="go_tests",
-        command="source {chroot}/go.env && go test ./...",
+        command='source {chroot}/go.env && "$GOROOT/bin/go" test ./...',
         execution_dependencies=[
-            "//:find_goroot",
+            "//pants-macros:find_goroot",
         ],
         workdir=".",
         path_env_modify="off",
