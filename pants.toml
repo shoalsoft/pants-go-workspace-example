@@ -3,10 +3,12 @@ pants_version = "2.28.0"
 backend_packages.add = [
   "pants.backend.experimental.adhoc",
   "pants.backend.shell",
+  "gofmt_plugin",
 ]
 build_file_prelude_globs = [
   "pants-macros/*.py",
 ]
+pythonpath.add = ["%(buildroot)s/pants-plugins"]
 
 [environments-preview.names]
 workspace = "//:workspace"
